@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus recados</title>
+    <link rel="stylesheet" href="./styles/styles.css">
+</head>
+<body style="margin: 16px">
+    <h2>Meus recados</h2>
+    <button id="btn-sair" onclick="sair()">Sair</button>
+
+    <div>
+      <input type="text" id="descricao" name="descricao" placeholder="Descrição" required/>
+  
+      <input type="text" id="detalhamento" name="detalhamento" placeholder="Detalhamento" required/>
+  
+      <button id="botao-salvar" onclick="salvarRecado()">Salvar</button>
+    </div>
+  
+    <hr>
+  
+    <table>
+  
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Descrição</th>
+          <th>Detalhamento</th>
+          <th>Ação</th>
+        </tr>
+      </thead>
+  
+      <tbody id="tbody"></tbody>
+  
+    </table>
+
+    <script src="./js/meusRecados.js"></script>
+</body>
+</html>

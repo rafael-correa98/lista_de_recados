@@ -1,0 +1,161 @@
+body{   
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+    margin: 0;    
+    background-color: #f3fdfd;
+    font-family: Verdana, Geneva, Tahoma, sans-serif; 
+}
+
+table, th, td {  
+    border: 1px solid rgb(152, 139, 184);  
+    border-collapse: collapse;
+}  
+  
+th, td {  
+    padding: 10px; 
+    width: 285px;
+    text-align: center;
+}  
+  
+table th {  
+    color: white;  
+    background-color: rgb(147, 152, 220);  
+}  
+  
+tbody th{
+    opacity: .8;
+}
+
+#container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: #f3fdfd;
+    align-items: center;
+}
+
+.imagem {
+    width: 100%;
+    background-color: #f3fdfd;
+}
+
+.esquerda{
+    height: 100%;    
+    width: 40%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin: 16px;
+}
+
+#login {    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.botao-input {
+    font-size: 16px; 
+    background-color: #4780a7;
+    color: white;
+    padding: 16px;
+    border: none;
+    border-radius: 4px;
+    width: 100%;
+    margin-bottom: 8px;
+}
+
+#criar-conta {
+    color: #4780a7;
+    text-decoration: none;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+}
+
+#novo-usuario {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#div-inputs {
+    display: flex;
+    flex-direction: column;
+    width: 450px;
+}
+
+#div-inputs>input {
+    margin-bottom: 4px;
+    border-radius: 5px;
+    border: none;
+}
+
+.botao-input:hover {
+    transform: scale(1.1) perspective(1px);
+}
+
+#botao-salvar {
+    background-color: #4780a7;
+    color: white;
+    border: none;
+}
+
+#botao-salvar:hover {
+    transform: scale(1.1) perspective(1px);
+}
+
+#descricao {
+    width: 30%;
+}
+
+#detalhamento {
+    width: 60%;
+}
+
+.button {
+  border-style: none;
+  height: 40px;
+  padding: 6px 12px;
+  background-color: black;
+  color: #fff;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: box-shadow 0.6s ease;
+}
+
+.button {
+  width: 5rem;
+}
+
+button.green {
+  background-color: #13ce66;
+}
+
+button.red {
+  background-color: #ff4949;
+}
+
+.button:hover {
+  box-shadow: inset 200px 0 0 #00000055;
+}
+
+#btn-sair {
+    background-color: #4780a7;
+    color: white;
+    border: none;
+    width: 50px;
+    position: absolute;
+    top: 30px;
+    right: 18px;
+}
+
+#btn-sair:hover {
+    transform: scale(1.1) perspective(1px);
+}
