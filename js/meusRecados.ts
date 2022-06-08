@@ -17,15 +17,15 @@ const usuarioCorrente = JSON.parse(
     sessionStorage.getItem("usuarioCorrente") || ""
   );
 
-  const recuperar_LocalStorage = () => {
-    const usuarios = JSON.parse(localStorage.getItem(usuarioCorrente) || "[]");
-    return usuarios;
+  const recuperarOLocalStorage = () => {
+    const recados = JSON.parse(localStorage.getItem(usuarioCorrente) || "[]");
+    return recados;
 };
 
 const salvarRecado = () => {
     const descricao = descricaoUsusario.value;
     const detalhamento = detalhamentoUsuario.value;
-    const listaDeRecados = recuperar_LocalStorage();
+    const listaDeRecados = recuperarOLocalStorage();
 
     if (!descricao || !detalhamento) {
         alert("Preencher todos os campos obrigatorios!!")
@@ -51,7 +51,7 @@ const salvarRecado = () => {
 }
 
 const montarTabela = () => {
-    const listaDeRecados = recuperar_LocalStorage();
+    const listaDeRecados = recuperarOLocalStorage();
     tBody.innerHTML = "";
     listaDeRecados.forEach((recado: Recado, indice: number) => {
         tBody.innerHTML += `
@@ -69,7 +69,7 @@ const montarTabela = () => {
 const apagaRecado = (indice: number) => {
     const confirmar = confirm("Deseja excluir o recado?");
     if(confirmar){
-        const listaDeRecados = recuperar_LocalStorage();
+        const listaDeRecados = recuperarOLocalStorage();
         listaDeRecados.splice(indice, 1);
         localStorage.setItem(usuarioCorrente, JSON.stringify(listaDeRecados));
         montarTabela();
@@ -77,7 +77,7 @@ const apagaRecado = (indice: number) => {
 }
 
 const editaRecado = (indice: number) => {
-    const listaDeRecados = recuperar_LocalStorage();
+    const listaDeRecados = recuperarOLocalStorage();
     descricaoUsusario.value = listaDeRecados[indice].descricao;
     detalhamentoUsuario.value = listaDeRecados[indice].detalhamento;
     estaEditando = true;

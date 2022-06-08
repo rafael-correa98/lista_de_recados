@@ -2,8 +2,6 @@ const nomeUsuario = document.querySelector("#criar-username") as HTMLInputElemen
 const passwordUsuario = document.querySelector("#criart-password") as HTMLInputElement;
 const passwordConfirmacao = document.querySelector("#confirmar-password") as HTMLInputElement;
 
-const btnINput = document.querySelector('#botao-input') as HTMLInputElement;
-
 const recuperarLocalStorage = (): Array<any> => {
     const usuarios = JSON.parse(
       localStorage.getItem("usuarios") || "[]"
@@ -43,7 +41,7 @@ function criarNovoUsuario() {
       }
     })
 
-    if (repetido === false){  
+    if (!repetido){  
     contas.push({
       nome,
       password,

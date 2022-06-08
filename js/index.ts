@@ -1,7 +1,7 @@
 const entrarUsuario = document.querySelector("#entrar-usuario") as HTMLInputElement;
 const entrarPassword = document.querySelector("#entrar-password") as HTMLInputElement;
 
-const btnEntrar = document.querySelector('#botao-input') as HTMLInputElement;
+const btnEntrar = document.querySelector('#botao-input') as HTMLButtonElement;
   
 const recuperarLS = (): Array<any> => {
   const usuarios = JSON.parse(
