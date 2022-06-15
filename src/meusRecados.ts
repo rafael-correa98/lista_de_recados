@@ -1,10 +1,8 @@
-const descricaoUsusario = document.querySelector("#descricao") as HTMLInputElement;
-const detalhamentoUsuario = document.querySelector("#detalhamento") as HTMLInputElement;
-
-const btnSalvar = document.querySelector('#botao-salvar') as HTMLButtonElement;
-
+const btnSalvar = document.querySelector('#botao_salvar') as HTMLButtonElement;
+const formSalvar = document.querySelector('#form_salvar') as HTMLFormElement;
 const tBody = document.querySelector('#tbody') as HTMLElement;
-
+const modalEditar = document.querySelector('#form_') as HTMLDivElement;
+const formSalvarModal = document.querySelector('#form_salvar_modal') as HTMLFormElement;
 interface Recado {
     descricao: string;
     detalhamento: string;
@@ -23,8 +21,8 @@ const usuarioCorrente = JSON.parse(
 };
 
 const salvarRecado = () => {
-    const descricao = descricaoUsusario.value;
-    const detalhamento = detalhamentoUsuario.value;
+    const descricao = formSalvar.descricao.value;
+    const detalhamento = formSalvar.detalhamento.value;
     const listaDeRecados = recuperarOLocalStorage();
 
     if (!descricao || !detalhamento) {
@@ -44,8 +42,36 @@ const salvarRecado = () => {
         listaDeRecados.push(recado);
     }
     localStorage.setItem(usuarioCorrente, JSON.stringify(listaDeRecados));
-    descricaoUsusario.value = "";
-    detalhamentoUsuario.value = "";
+    formSalvar.descricao.value = "";
+    formSalvar.detalhamento.value = "";
+
+    montarTabela();
+}
+
+const salvarRecadoModal = () => {
+    const descricaoModal = formSalvarModal.descricao.value;
+    const detalhamentoModal = formSalvarModal.detalhamento.value;
+    const listaDeRecados = recuperarOLocalStorage();
+
+    if (!descricaoModal || !detalhamentoModal) {
+        alert("Preencher todos os campos obrigatorios!!")
+        return;
+    }
+    
+    if (estaEditando){
+        listaDeRecados[indiceEditar].descricao = descricaoModal
+        listaDeRecados[indiceEditar].detalhamento = detalhamentoModal
+        estaEditando = false
+    } else {
+        const recado = {
+            descricaoModal,
+            detalhamentoModal,
+        };
+        listaDeRecados.push(recado);
+    }
+    localStorage.setItem(usuarioCorrente, JSON.stringify(listaDeRecados));
+    formSalvarModal.descricao.value = "";
+    formSalvarModal.detalhamento.value = "";
 
     montarTabela();
 }
@@ -59,36 +85,45 @@ const montarTabela = () => {
           <th>${indice + 1}</th>
           <th>${recado.descricao}</th>
           <th>${recado.detalhamento}</th>
-          <th><button type="button" onclick="apagaRecado(${indice})" class="button red">Apagar</button>
-          <button type="button" onclick="editaRecado(${indice})" class="button green">Editar</button></th>
+          <th><button type="button" class="button red" data-bs-toggle="modal" data-bs-target="#apagarModal" onclick="botaoApagar(${indice})">Apagar</button>
+          <button type="button" id="botao_editar" class="button green" data-bs-toggle="modal" data-bs-target="#editarModal" onclick="editarRecadoModal(${indice})">Editar</button></th>
         </tr>
         `
     });
 }
 
-const apagaRecado = (indice: number) => {
-    const confirmar = confirm("Deseja excluir o recado?");
-    if(confirmar){
-        const listaDeRecados = recuperarOLocalStorage();
-        listaDeRecados.splice(indice, 1);
-        localStorage.setItem(usuarioCorrente, JSON.stringify(listaDeRecados));
-        montarTabela();
-    }
+
+const apagarRecado = (indice: number) => {
+    const listaDeRecados = recuperarOLocalStorage();
+    listaDeRecados.splice(indice, 1);
+    localStorage.setItem(usuarioCorrente, JSON.stringify(listaDeRecados));
+    montarTabela();
 }
 
-const editaRecado = (indice: number) => {
+function botaoApagar(index:number) {
+    console.log(index)
+    const btnApagar = document.querySelector('#botao_apagar') as HTMLButtonElement;
+    btnApagar.setAttribute('onclick', `apagarRecado(${index})`) 
+}
+
+const editarRecadoModal = (indice: number) => {
     const listaDeRecados = recuperarOLocalStorage();
-    descricaoUsusario.value = listaDeRecados[indice].descricao;
-    detalhamentoUsuario.value = listaDeRecados[indice].detalhamento;
+    formSalvarModal.descricao.value = listaDeRecados[indice].descricao;
+    formSalvarModal.detalhamento.value = listaDeRecados[indice].detalhamento;
     estaEditando = true;
     indiceEditar = indice;
 }
 
 const sair = () => {
     sessionStorage.clear();
-    location.href = "index.html"
+    location.href = "../public/index.html"
 }
 
 document.addEventListener("DOMContentLoaded", montarTabela);
 
+const myModal = document.getElementById('myModal') as HTMLDivElement;
+const myInput = document.getElementById('myInput') as HTMLDivElement;
 
+myModal.addEventListener('shown.bs.modal', () => {
+  myInput.focus()
+})

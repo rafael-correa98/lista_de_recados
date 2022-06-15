@@ -1,7 +1,5 @@
-const entrarUsuario = document.querySelector("#entrar-usuario") as HTMLInputElement;
-const entrarPassword = document.querySelector("#entrar-password") as HTMLInputElement;
-
-const btnEntrar = document.querySelector('#botao-input') as HTMLButtonElement;
+const btnEntrar = document.querySelector('#botao_input') as HTMLButtonElement;
+const formEntrar = document.querySelector('#form_entrar') as HTMLFormElement;
   
 const recuperarLS = (): Array<any> => {
   const usuarios = JSON.parse(
@@ -13,8 +11,8 @@ const recuperarLS = (): Array<any> => {
 
 const validarUsuario = () => {
   const listaUsuarios = recuperarLS();
-  const nome = entrarUsuario.value;
-  const password = entrarPassword.value;
+  const nome = formEntrar.entrar_usuario.value;
+  const password = formEntrar.entrar_password.value;
 
   if (!nome || !password) {
     alert("Preencher todos os campos obrigatorios!!")
@@ -22,16 +20,17 @@ const validarUsuario = () => {
 }
 
   const usuarioAtual = listaUsuarios.find((usuario) => {
-    return usuario.nome === entrarUsuario.value && usuario.password === entrarPassword.value
+    return usuario.nome === formEntrar.entrar_usuario.value && usuario.password === formEntrar.entrar_password.value
   })
 
   if (usuarioAtual) {
     sessionStorage.setItem("usuarioCorrente", JSON.stringify(usuarioAtual.nome))
-    location.href = "meusRecados.html";
+    location.href = "../public/meusRecados.html";
   } else {
     alert("Usuario ou senha invalido!")
   }
 
 }
 
+btnEntrar.addEventListener("click", validarUsuario)
 

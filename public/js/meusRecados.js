@@ -1,9 +1,14 @@
 "use strict";
-const descricaoUsusario = document.querySelector("#descricao");
-const detalhamentoUsuario = document.querySelector("#detalhamento");
-const btnSalvar = document.querySelector('#botao-salvar');
+const btnSalvar = document.querySelector('#botao_salvar');
+const formSalvar = document.querySelector('#form_salvar');
 const tBody = document.querySelector('#tbody');
+// const modalExcluir = document.querySelector('#apagarModalLabel') as HTMLDivElement
+const modalEditar = document.querySelector('#form_');
+// const btnEditar = document.querySelector('#botao_editar') as HTMLButtonElement;
+// const btnSalvarModal = document.querySelector('#botao_salvar_modal') as HTMLButtonElement;
+const formSalvarModal = document.querySelector('#form_salvar_modal');
 let estaEditando = false;
+// let estaEditandoModal = false;
 let indiceEditar = 0;
 const usuarioCorrente = JSON.parse(sessionStorage.getItem("usuarioCorrente") || "");
 const recuperarOLocalStorage = () => {
@@ -11,8 +16,8 @@ const recuperarOLocalStorage = () => {
     return recados;
 };
 const salvarRecado = () => {
-    const descricao = descricaoUsusario.value;
-    const detalhamento = detalhamentoUsuario.value;
+    const descricao = formSalvar.descricao.value;
+    const detalhamento = formSalvar.detalhamento.value;
     const listaDeRecados = recuperarOLocalStorage();
     if (!descricao || !detalhamento) {
         alert("Preencher todos os campos obrigatorios!!");
@@ -31,8 +36,33 @@ const salvarRecado = () => {
         listaDeRecados.push(recado);
     }
     localStorage.setItem(usuarioCorrente, JSON.stringify(listaDeRecados));
-    descricaoUsusario.value = "";
-    detalhamentoUsuario.value = "";
+    formSalvar.descricao.value = "";
+    formSalvar.detalhamento.value = "";
+    montarTabela();
+};
+const salvarRecadoModal = () => {
+    const descricaoModal = formSalvarModal.descricao.value;
+    const detalhamentoModal = formSalvarModal.detalhamento.value;
+    const listaDeRecados = recuperarOLocalStorage();
+    if (!descricaoModal || !detalhamentoModal) {
+        alert("Preencher todos os campos obrigatorios!!");
+        return;
+    }
+    if (estaEditando) {
+        listaDeRecados[indiceEditar].descricao = descricaoModal;
+        listaDeRecados[indiceEditar].detalhamento = detalhamentoModal;
+        estaEditando = false;
+    }
+    else {
+        const recado = {
+            descricaoModal,
+            detalhamentoModal,
+        };
+        listaDeRecados.push(recado);
+    }
+    localStorage.setItem(usuarioCorrente, JSON.stringify(listaDeRecados));
+    formSalvarModal.descricao.value = "";
+    formSalvarModal.detalhamento.value = "";
     montarTabela();
 };
 const montarTabela = () => {
@@ -44,30 +74,50 @@ const montarTabela = () => {
           <th>${indice + 1}</th>
           <th>${recado.descricao}</th>
           <th>${recado.detalhamento}</th>
-          <th><button type="button" onclick="apagaRecado(${indice})" class="button red">Apagar</button>
-          <button type="button" onclick="editaRecado(${indice})" class="button green">Editar</button></th>
+          <th><button type="button" class="button red" data-bs-toggle="modal" data-bs-target="#apagarModal" onclick="botaoApagar(${indice})">Apagar</button>
+          <button type="button" id="botao_editar" class="button green" data-bs-toggle="modal" data-bs-target="#editarModal" onclick="editarRecadoModal(${indice})">Editar</button></th>
         </tr>
         `;
     });
 };
-const apagaRecado = (indice) => {
-    const confirmar = confirm("Deseja excluir o recado?");
-    if (confirmar) {
-        const listaDeRecados = recuperarOLocalStorage();
-        listaDeRecados.splice(indice, 1);
-        localStorage.setItem(usuarioCorrente, JSON.stringify(listaDeRecados));
-        montarTabela();
-    }
-};
-const editaRecado = (indice) => {
+const apagarRecado = (indice) => {
+    console.log("hbcdsulvliu"); // const confirmar = confirm("Deseja excluir o recado?");
+    // if(confirmar){
     const listaDeRecados = recuperarOLocalStorage();
-    descricaoUsusario.value = listaDeRecados[indice].descricao;
-    detalhamentoUsuario.value = listaDeRecados[indice].detalhamento;
+    listaDeRecados.splice(indice, 1);
+    localStorage.setItem(usuarioCorrente, JSON.stringify(listaDeRecados));
+    montarTabela();
+};
+function botaoApagar(index) {
+    console.log(index);
+    const btnApagar = document.querySelector('#botao_apagar');
+    btnApagar.setAttribute('onclick', `apagarRecado(${index})`);
+}
+const editarRecadoModal = (indice) => {
+    const listaDeRecados = recuperarOLocalStorage();
+    formSalvarModal.descricao.value = listaDeRecados[indice].descricao;
+    formSalvarModal.detalhamento.value = listaDeRecados[indice].detalhamento;
     estaEditando = true;
     indiceEditar = indice;
 };
 const sair = () => {
     sessionStorage.clear();
-    location.href = "index.html";
+    location.href = "../public/index.html";
 };
 document.addEventListener("DOMContentLoaded", montarTabela);
+const myModal = document.getElementById('myModal');
+const myInput = document.getElementById('myInput');
+myModal.addEventListener('shown.bs.modal', () => {
+    myInput.focus();
+});
+// const editarRecado = (indice: number) => {
+//     const listaDeRecados = recuperarOLocalStorage();
+//     formSalvar.descricao.value = listaDeRecados[indice].descricao;
+//     formSalvar.detalhamento.value = listaDeRecados[indice].detalhamento;
+//     estaEditando = true;
+//     indiceEditar = indice;
+// }
+// function apagarRecado(index: number) {
+//     const btnDelete = document.querySelector('#btn-delete') as HTMLButtonElement;
+//     btnDelete.setAttribute(on)
+// }

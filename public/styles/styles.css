@@ -10,7 +10,6 @@ table, th, td {
   
 th, td {  
     padding: 10px; 
-    width: 285px;
     text-align: center;
 }  
   
@@ -29,24 +28,6 @@ tbody th{
     font-size: 16px;
 }
 
-#novo-usuario {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-#div-inputs {
-    display: flex;
-    flex-direction: column;
-    width: 450px;
-}
-
-#div-inputs>input {
-    margin-bottom: 4px;
-    border-radius: 5px;
-    border: none;
-}
 
 .botao-input:hover {
     transform: scale(1.1) perspective(1px);
@@ -62,15 +43,8 @@ tbody th{
     transform: scale(1.1) perspective(1px);
 }
 
-#descricao {
-    width: 30%;
-}
 
-#detalhamento {
-    width: 60%;
-}
-
-.button {
+/* .button {
   border-style: none;
   height: 40px;
   padding: 6px 12px;
@@ -81,7 +55,7 @@ tbody th{
   font-weight: 700;
   cursor: pointer;
   transition: box-shadow 0.6s ease;
-}
+} */
 
 .button {
   width: 5rem;
@@ -99,6 +73,10 @@ button.red {
   box-shadow: inset 200px 0 0 #00000055;
 }
 
+#btn-sair:hover {
+    transform: scale(1.1) perspective(1px);
+}
+
 #btn-sair {
     background-color: #4780a7;
     color: white;
@@ -109,6 +87,27 @@ button.red {
     right: 18px;
 }
 
-#btn-sair:hover {
-    transform: scale(1.1) perspective(1px);
+.dino {
+   animation-name: dino;
+   animation-duration: 10s;
+   animation-delay: 0s;
+   animation-iteration-count: infinite;
 }
+
+@keyframes dino {
+    10%, 90% {
+      transform: translate3d(-3px, 0, 0);
+    }
+    
+    20%, 80% {
+      transform: translate3d(4px, 0, 0);
+    }
+  
+    30%, 50%, 70% {
+      transform: translate3d(-6px, 0, 0);
+    }
+  
+    40%, 60% {
+      transform: translate3d(6px, 0, 0);
+    }
+  }

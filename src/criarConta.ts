@@ -1,6 +1,5 @@
-const nomeUsuario = document.querySelector("#criar-username") as HTMLInputElement;
-const passwordUsuario = document.querySelector("#criart-password") as HTMLInputElement;
-const passwordConfirmacao = document.querySelector("#confirmar-password") as HTMLInputElement;
+const btnCriar = document.querySelector('#btn_criar') as HTMLButtonElement;
+const formCriar = document.querySelector('#criar_conta') as HTMLFormElement;
 
 const recuperarLocalStorage = (): Array<any> => {
     const usuarios = JSON.parse(
@@ -8,17 +7,17 @@ const recuperarLocalStorage = (): Array<any> => {
     ) as Array<any>;
   
     return usuarios;
-  };
+};
   
-  const atualizarLocalStorage = (usuarios: Array<any>) => {
+const atualizarLocalStorage = (usuarios: Array<any>) => {
     localStorage.setItem("usuarios", JSON.stringify(usuarios));
-  };
+};
   
 
-function criarNovoUsuario() {
-    const nome = nomeUsuario.value;
-    const password = passwordUsuario.value;
-    const confirmacao = passwordConfirmacao.value;
+function criarNovoUsuario() { 
+    const nome = formCriar.criar_usuario.value;
+    const password = formCriar.criar_password.value;
+    const confirmacao = formCriar.confirmar_password.value;
     let repetido:boolean = false;
 
     if (!nome || !password || !confirmacao) {
@@ -51,9 +50,11 @@ function criarNovoUsuario() {
 
     alert("Usuario cadastrado");
 
-    location.href = "index.html";
+    location.href = "../public/index.html";
     }
 }
+
+btnCriar.addEventListener("click", criarNovoUsuario)
 
 
 

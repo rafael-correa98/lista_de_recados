@@ -5,24 +5,44 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="stylesheet" href="./styles/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./styles/styles.css">
 </head>
 <body>
-    <div id="container">
-        <section class="esquerda">
-            <img class="imagem" src="images/Pngtree_the astronaut_drives t_rex dinosaurs_5995305.png" alt="t_rex">
-        </section>
+    <div id="container-sm container">
+        <div class="row vw-100 vh-100">
+            <div class="col-sm-6 align-self-sm-center">
+                <img class="bg-white w-75 dino" src="./images/Pngtree_the astronaut_drives t_rex dinosaurs_5995305.png">
+            </div>
+            
+            <div class="col-sm-6 d-flex flex-column align-items-center align-self-sm-center">
+                    <div>
+                        <p class="h5">CRIAR CONTA</p>
+                    </div>
+                    <div>
+                        <form id="criar_conta">
+                            <div class="form-floating w-100">
+                                <input type="text" class="form-control" name="criar_usuario" id="criar_usuario" placeholder="User name">
+                                <label for="criar_usuario">User name</label>
+                            </div>
+                            <div class="form-floating w-100">
+                                <input type="password" class="form-control" name="criar_password" id="criar_password" placeholder="Password">
+                                <label for="criar_password">Password</label>
+                            </div>
+                            <div class="form-floating w-100">
+                                <input type="password" class="form-control" name="confirmar_password" id="confirmar_password" placeholder="Repeat Password">
+                                <label for="confirmar_password">Repeat Password</label>
+                            </div>
+                            <div>
+                                <button type="button" id="btn_criar" class="btn p-3 botao-input w-100">CRIAR CONTA AGORA</button>
+                            </div>
+                        </form>
+                    </div>
+            </div>
+        </div>
 
-        <section id="novo-usuario">
-            <div id="titulo"><h1>CRIAR CONTA</h1></div>
-                <div id="div-inputs">
-                    <input  name="criar-usuario" id="criar-username" type="text" placeholder="User name">
-                    <input name="criar-password" id="criart-password" type="password" placeholder="Password">
-                    <input name="confirmar-password" id="confirmar-password" type="password" placeholder="Repeat Password">
-                </div>
-                <button class="botao-input" onclick="criarNovoUsuario()">CRIAR CONTA AGORA</button>
-        </section>
     </div>
+    <script src="./js/js/bootstrap.min.js"></script>
     <script src="./js/criarConta.js"></script>
 </body>
 </html>
