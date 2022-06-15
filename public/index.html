@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="../styles/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../styles/styles.css">
+</head>
+<body>
+    <div id="container vh-100">
+        <div class="row align-items-center">
+            <div class="col-6">
+                    <img class="bg-white w-75" src="images/Pngtree_the astronaut_drives t_rex dinosaurs_5995305.png" alt="Imagem de um astronauta montado em um dinossauro">
+            </div>
+            <div class="col-6">
+                    <div>
+                        <h1 class="fs-4">ENTRAR NO SISTEMA DE RECADOS</h1>
+                    </div>
+                    <div>
+                        <form>
+                            <div class="form-floating w-100">
+                                <input type="text" class="form-control" name="entrar-usuario" id="entrar-usuario" placeholder="User name">
+                                <label for="entrar-usuario">User name</label>
+                            </div>
+                            <div class="form-floating w-100">
+                                <input type="password" class="form-control" name="entrar-password" id="entrar-password" placeholder="Password">
+                                <label for="entrar-password">Password</label>
+                            </div>
+                            <button type="submit" class="btn p-3 botao-input w-100" onclick="validarUsuario()">ENTRAR</button>
+                        </form>
+                    </div>
+                    <div>
+                        <a class="text" id="criar-conta" href="./criarConta.html">CRIAR CONTA</a>     
+                    </div>
+            </div>
+        </div>
+
+
+        <script src="./js/index.js"></script>
+        <script src="../styles/bootstrap/js/bootstrap.min.js"></script>
+    </body>
+    </html>
+    <!-- <div>
+        <input  name="entrar-usuario" id="entrar-usuario" type="text" placeholder="User name">
+        <input name="entrar-password" id="entrar-password" type="password" placeholder="Password">
+        <button class="botao-input" onclick="validarUsuario()">ENTRAR</button>
+    </div> -->

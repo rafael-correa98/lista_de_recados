@@ -2,7 +2,6 @@
 const nomeUsuario = document.querySelector("#criar-username");
 const passwordUsuario = document.querySelector("#criart-password");
 const passwordConfirmacao = document.querySelector("#confirmar-password");
-const btnINput = document.querySelector('#botao-input');
 const recuperarLocalStorage = () => {
     const usuarios = JSON.parse(localStorage.getItem("usuarios") || "[]");
     return usuarios;
@@ -31,7 +30,7 @@ function criarNovoUsuario() {
             return;
         }
     });
-    if (repetido === false) {
+    if (!repetido) {
         contas.push({
             nome,
             password,
